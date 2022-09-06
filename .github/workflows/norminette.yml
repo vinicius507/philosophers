@@ -21,4 +21,4 @@ jobs:
     - name: Norminette version
       run: norminette --version
     - name: Check norme errors
-      run: norminette src
+      run: norminette ./philo/src

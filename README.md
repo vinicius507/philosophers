@@ -40,23 +40,24 @@ $ make
 ```sh
 $ ./philo --help
 Usage: ./philo N TIME_TO_DIE TIME_TO_EAT TIME_TO_SLEEP [MEALS]
-Runs a philosophers simulation using multiple threads.
+Simulates a Dining Philosophers problem using pthreads.
 An École 42 project.
 
-ARGS
+Positional Arguments
 	N
-		The number of philosophers and forks.
+		The number of philosophers and forks
 	TIME_TO_DIE
-		The time, in milliseconds, it takes for a philosopher to die from.
-		starvation
+		The time (in ms) it takes for a philosopher to die
+		from starvation.
 	TIME_TO_EAT
-		The time, in milliseconds, it takes for a philosopher to eat.
+		The time (in ms) it takes for a philosopher to eat.
 	TIME_TO_SLEEP
-		The time, in milliseconds, a philosopher will spend sleeping.
+		The time (in ms) it takes for a philosopher to sleep.
 	MEALS [Optional]
 		The number of meals each philosopher has to eat.
+		If unset, the simulation stops when a philosopher dies.
 
-FLAGS
+Flags
 	--help
-		Display this help message and exits.
+		Displays this help message and exits.
 ```

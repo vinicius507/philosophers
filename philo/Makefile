@@ -6,37 +6,31 @@
 ##   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        ##
 ##                                                +#+#+#+#+#+   +#+           ##
 ##   Created: 2022/09/05 16:57:33 by vgoncalv          #+#    #+#             ##
-##   Updated: 2022/09/05 17:39:53 by vgoncalv         ###   ########.fr       ##
+##   Updated: 2022/09/06 13:21:19 by vgoncalv         ###   ########.fr       ##
 ##                                                                            ##
 ## ########################################################################## ##
 
-NAME = t_project
+NAME = philo
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 BUILD_DIR = ./build
 
-LIBFT_DIR = ./libft
-LIBFT = $(LIBFT_DIR)/libft.a
-LIBFT_FLAGS = -L./libft -lft
-LIBFT_INCLUDES_DIR = ./libft/include ./libft
-
-INCLUDES_DIR = $(LIBFT_INCLUDES_DIR) ./src
+SRC_DIR = ./src
+INCLUDES_DIR = $(SRC_DIR)
 INCLUDES = $(addprefix -I,$(INCLUDES_DIR))
+LIBS = -lpthread
 
-vpath %.c src
-SRCS = main.c
+vpath %.c $(SRC_DIR)
+SRCS = philo.c strings.c args.c forks.c philosophers.c simulation.c
 OBJS = $(addprefix $(BUILD_DIR)/,$(SRCS:%.c=%.o)) 
 
 RM = rm -f
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(INCLUDES) $^ $(LIBFT_FLAGS) -o $@
-
-$(LIBFT):
-	make -C $(LIBFT_DIR)
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(INCLUDES) $^ $(LIBS) -o $@
 
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
@@ -45,12 +39,9 @@ $(BUILD_DIR)/%.o: %.c $(BUILD_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) $< -c -o $@
 
 clean:
-	make clean -C $(LIBFT_DIR)
 	$(RM) -r $(OBJDIR)
 
-fclean:
-	make fclean -C $(LIBFT_DIR)
-	$(RM) -r $(OBJDIR)
+fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
