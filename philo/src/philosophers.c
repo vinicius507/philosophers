@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 00:22:06 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/06 13:11:04 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/07 15:34:56 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,19 @@
 
 /**
  * @brief Creates a new `philosopher` instance.
+ * @param id The id of the philosopher
  * @return The allocated `philosopher` instance
  */
-t_philo	*new_philosopher(void)
+t_philo	*new_philosopher(int id)
 {
 	t_philo	*philosopher;
 
 	philosopher = malloc(1 * sizeof(t_philo));
 	if (philosopher == NULL)
 		return (NULL);
+	philosopher->id = id;
 	philosopher->thread_id = 0;
+	philosopher->meals = 0;
 	return (philosopher);
 }
 
@@ -65,7 +68,7 @@ t_philo	**spawn_philosophers(int n)
 	i = 0;
 	while (i < n)
 	{
-		philosophers[i] = new_philosopher();
+		philosophers[i] = new_philosopher(i + 1);
 		if (philosophers[i] == NULL)
 		{
 			clear_philosophers(philosophers);

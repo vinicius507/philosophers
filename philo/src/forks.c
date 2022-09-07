@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 00:30:39 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/06 13:14:48 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/07 19:41:32 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,9 @@ t_fork	*new_fork(void)
 	fork = malloc(1 * sizeof(t_fork));
 	if (fork == NULL)
 		return (NULL);
-	if ((pthread_mutex_init(fork, NULL)) != 0)
-	{ 
-		pthread_mutex_destroy(fork);
-		free(fork);
-		return (NULL);
-	}
+	fork->is_locked = 0;
+	pthread_mutex_init(&fork->mutex, NULL);
+	pthread_mutex_init(&fork->is_locked_mutex, NULL);
 	return (fork);
 }
 
@@ -47,7 +44,8 @@ void	clear_forks(t_fork **forks)
 	offset = 0;
 	while (forks[offset] != NULL)
 	{
-		pthread_mutex_destroy(forks[offset]);
+		pthread_mutex_destroy(&forks[offset]->mutex);
+		pthread_mutex_destroy(&forks[offset]->is_locked_mutex);
 		free(forks[offset]);
 		offset++;
 	}
@@ -71,8 +69,8 @@ t_fork	**spawn_forks(int n)
 	offset = 0;
 	while (offset < n)
 	{
-		forks[n] = new_fork();
-		if (forks[n] == NULL)
+		forks[offset] = new_fork();
+		if (forks[offset] == NULL)
 		{
 			clear_forks(forks);
 			return (NULL);

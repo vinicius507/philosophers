@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 23:24:53 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/06 13:24:45 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/07 18:24:23 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,14 @@ static int	parse_int_arg(const char *nptr)
 	offset = 0;
 	while (nptr[offset] != '\0')
 	{
+		if (offset > 9)
+			return (-2);
 		digit = nptr[offset] - '0';
 		if (digit < 0 || digit > 9)
-			return (0);
+			return (-2);
 		value *= 10;
+		if (value + digit < value)
+			return (-2);
 		value += digit;
 		offset++;
 	}
@@ -77,21 +81,15 @@ static int	parse_int_arg(const char *nptr)
 static int	check_errors(t_data *data)
 {
 	if (data->n <= 0)
-		return (dprintf(STDERR_FILENO,
-				"Error: N should be an integer greater than zero."));
+		return (error("N should be an integer greater than zero."));
 	if (data->time_to_die <= 0)
-		return (dprintf(STDERR_FILENO,
-				"Error: TIME_TO_DIE should be an integer greater than zero."));
+		return (error("TIME_TO_DIE should be an integer greater than zero."));
 	if (data->time_to_eat <= 0)
-		return (dprintf(STDERR_FILENO,
-				"Error: TIME_TO_EAT should be an integer greater than zero."));
+		return (error("TIME_TO_EAT should be an integer greater than zero."));
 	if (data->time_to_sleep <= 0)
-		return (dprintf(STDERR_FILENO,
-				"Error: TIME_TO_SLEEP should be an integer greater"
-				" than zero."));
-	if (data->meals != UNLIMITED_MEALS && data->meals < 0)
-		return (dprintf(STDERR_FILENO,
-				"Error: MEALS should be a non-negative integer."));
+		return (error("TIME_TO_SLEEP should be an integer greater than zero."));
+	if (data->meals != UNLIMITED_MEALS && data->meals <= 0)
+		return (error("MEALS should be an integer greater than zero."));
 	return (0);
 }
 
@@ -111,6 +109,7 @@ void	argparse(int argc, char **argv, t_data *data)
 	}
 	if (argc < 5 || argc > 6)
 	{
+		error("wrong number of arguments.");
 		usage(argv[0]);
 		exit(EXIT_FAILURE);
 	}
