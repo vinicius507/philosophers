@@ -15,6 +15,7 @@
 
 /**
  * @brief Initializes the program data
+ * @param data The simulation data
  */
 static void	init_data(t_data *data)
 {
