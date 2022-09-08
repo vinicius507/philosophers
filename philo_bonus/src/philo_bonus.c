@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 23:11:37 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/08 15:38:56 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:25:18 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int	main(int argc, char **argv)
 
 	init_data(&data);
 	argparse(argc, argv, &data);
+	simulation(&data);
 	return (0);
 }

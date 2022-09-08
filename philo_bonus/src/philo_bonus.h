@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:39:00 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/08 15:38:45 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:55:48 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,11 @@ int		ft_streq(const char *s1, const char *s2);
 int		error(const char *err_msg);
 
 void	argparse(int argc, char **argv, t_data *data);
+
+long	get_time_in_ms(void);
+
+long	get_time_since(long start);
+
+void	simulation(t_data *data);
 
 #endif

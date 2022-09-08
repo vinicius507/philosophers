@@ -6,7 +6,7 @@
 ##   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        ##
 ##                                                +#+#+#+#+#+   +#+           ##
 ##   Created: 2022/09/05 16:57:33 by vgoncalv          #+#    #+#             ##
-##   Updated: 2022/09/08 15:39:47 by vgoncalv         ###   ########.fr       ##
+##   Updated: 2022/09/08 16:56:15 by vgoncalv         ###   ########.fr       ##
 ##                                                                            ##
 ## ########################################################################## ##
 
@@ -22,7 +22,8 @@ INCLUDES = $(addprefix -I,$(INCLUDES_DIR))
 LIBS =
 
 vpath %.c $(SRC_DIR)
-SRCS = philo_bonus.c strings_bonus.c error_bonus.c args_bonus.c
+SRCS = philo_bonus.c strings_bonus.c error_bonus.c args_bonus.c time_bonus.c \
+	   simulation_bonus.c
 OBJS = $(addprefix $(BUILD_DIR)/,$(SRCS:%.c=%.o)) 
 
 RM = rm -f
