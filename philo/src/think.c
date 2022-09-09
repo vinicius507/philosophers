@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 14:18:51 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/07 20:00:23 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:40:16 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,13 @@ void	action_think(t_philo *philo)
 	t_data		*data;
 
 	data = philo->data;
-	if ((check_someone_died(data) != 0))
-		return ;
-	if ((starved(philo) != 0))
-		return (die(philo));
 	ms = log_action(philo, "is thinking");
 	while ((is_thinking(philo, ms + data->start_time) != 0))
 	{
 		if ((check_someone_died(data) != 0))
 			return ;
+		if ((starved(philo) != 0))
+			return (die(philo));
 		usleep(100);
 	}
 }
