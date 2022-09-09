@@ -38,7 +38,7 @@ $(BUILD_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) $< -c -o $@
 
 clean:
-	$(RM) -r $(OBJDIR)
+	$(RM) -r $(BUILD_DIR)
 
 fclean: clean
 	$(RM) $(NAME)
