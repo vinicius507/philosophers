@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 23:11:37 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/09 14:24:04 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:44:13 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 static void	init_data(t_data *data)
 {
 	memset(data, 0, sizeof(t_data));
+	data->meals = UNLIMITED_MEALS;
 	data->someone_died = new_semaphore(SEM_SOMEONE_DIED, 0);
 	if (data->someone_died == NULL)
 		exit(EXIT_FAILURE);

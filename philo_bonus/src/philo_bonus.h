@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:39:00 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/09 14:36:07 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:42:45 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void	die(t_philo *philo);
 void	action_eat(t_philo *philo);
 
 void	action_sleep(t_philo *philo);
+
+void	action_think(t_philo *philo);
 
 void	simulation(t_philo **philos, t_data *data);
 
