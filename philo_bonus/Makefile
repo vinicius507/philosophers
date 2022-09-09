@@ -6,7 +6,7 @@
 ##   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        ##
 ##                                                +#+#+#+#+#+   +#+           ##
 ##   Created: 2022/09/05 16:57:33 by vgoncalv          #+#    #+#             ##
-##   Updated: 2022/09/08 17:55:51 by vgoncalv         ###   ########.fr       ##
+##   Updated: 2022/09/09 14:21:17 by vgoncalv         ###   ########.fr       ##
 ##                                                                            ##
 ## ########################################################################## ##
 
@@ -23,7 +23,8 @@ LIBS = -pthread
 
 vpath %.c $(SRC_DIR)
 SRCS = philo_bonus.c strings_bonus.c error_bonus.c args_bonus.c time_bonus.c \
-	   philos_bonus.c starved_bonus.c sem_bonus.c die_bonus.c simulation_bonus.c
+	   philos_bonus.c starved_bonus.c sem_bonus.c die_bonus.c log_bonus.c \
+	   eat_bonus.c simulation_bonus.c
 OBJS = $(addprefix $(BUILD_DIR)/,$(SRCS:%.c=%.o)) 
 
 RM = rm -f

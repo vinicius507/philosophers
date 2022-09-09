@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 23:11:37 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/08 18:17:13 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:24:04 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,14 @@
 static void	init_data(t_data *data)
 {
 	memset(data, 0, sizeof(t_data));
-	data->someone_died = new_semaphore(SOMEONE_DIED, 0);
+	data->someone_died = new_semaphore(SEM_SOMEONE_DIED, 0);
 	if (data->someone_died == NULL)
 		exit(EXIT_FAILURE);
-	data->someone_died_lock = new_semaphore(SOMEONE_DIED_LOCK, 1);
+	data->someone_died_lock = new_semaphore(SEM_SOMEONE_DIED_LOCK, 1);
 	if (data->someone_died_lock == NULL)
+		exit(EXIT_FAILURE);
+	data->log_lock = new_semaphore(SEM_LOG_LOCK, 1);
+	if (data->log_lock == NULL)
 		exit(EXIT_FAILURE);
 }
 
@@ -35,10 +38,14 @@ static void	init_data(t_data *data)
  */
 static void	teardown_data(t_data *data)
 {
+	sem_close(data->forks);
+	sem_close(data->log_lock);
 	sem_close(data->someone_died);
 	sem_close(data->someone_died_lock);
-	sem_unlink(SOMEONE_DIED);
-	sem_unlink(SOMEONE_DIED_LOCK);
+	sem_unlink(SEM_FORKS);
+	sem_unlink(SEM_LOG_LOCK);
+	sem_unlink(SEM_SOMEONE_DIED);
+	sem_unlink(SEM_SOMEONE_DIED_LOCK);
 }
 
 int	main(int argc, char **argv)
@@ -49,8 +56,9 @@ int	main(int argc, char **argv)
 	init_data(&data);
 	argparse(argc, argv, &data);
 	philos = spawn_philosophers(data.n);
-	if (philos == NULL)
-		error("could not allocated resources for the philosophers");
+	data.forks = new_semaphore(SEM_FORKS, data.n);
+	if (philos == NULL || data.forks == NULL)
+		error("could not allocated resources for the simulation");
 	else
 		simulation(philos, &data);
 	clear_philosophers(philos);

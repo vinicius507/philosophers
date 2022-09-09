@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:25:09 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/08 18:30:54 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:31:50 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ static void	philosophize(t_philo *philo, t_data *data)
 		usleep(500);
 	while ((check_someone_died(data) == 0))
 	{
-		if ((starved(philo) != 0))
-			return (die(philo));
+		action_eat(philo);
+		if (philo->meals == data->meals)
+			break ;
 		usleep(100);
 	}
 	exit(EXIT_SUCCESS);

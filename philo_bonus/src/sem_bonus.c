@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:48:31 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/08 18:24:50 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:09:01 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,14 @@ sem_t	*new_semaphore(const char *name, int value)
 		return (NULL);
 	}
 	return (sem);
+}
+
+/**
+ * @brief Retrieves the value of the semaphore.
+ * @param sem The sempahore to retrieve the value
+ * @return The semaphore's value
+ */
+int	get_sem_value(sem_t *sem)
+{
+	return (*(int *)sem);
 }

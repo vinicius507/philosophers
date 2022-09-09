@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:39:00 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/08 18:21:05 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:15:17 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,12 @@
 # include <semaphore.h>
 
 # define UNLIMITED_MEALS -1
-# define SOMEONE_DIED "/someone_died"
-# define SOMEONE_DIED_LOCK "/someone_died_lock"
+# define SEM_FORKS "/sem_forks"
+# define SEM_LOG_LOCK "/sem_log_lock"
+# define SEM_SOMEONE_DIED "/sem_someone_died"
+# define SEM_SOMEONE_DIED_LOCK "/sem_someone_died_lock"
+
+typedef sem_t 	t_forks;
 
 typedef struct s_data
 {
@@ -28,6 +32,8 @@ typedef struct s_data
 	int		time_to_sleep;
 	int		meals;
 	long	start_time;
+	t_forks	*forks;
+	sem_t	*log_lock;
 	sem_t	*someone_died;
 	sem_t	*someone_died_lock;
 }	t_data;
@@ -56,6 +62,8 @@ void	argparse(int argc, char **argv, t_data *data);
 
 sem_t	*new_semaphore(const char *name, int value);
 
+int		get_sem_value(sem_t *sem);
+
 long	get_time_in_ms(void);
 
 long	get_time_since(long start);
@@ -68,7 +76,11 @@ int		starved(t_philo *philo);
 
 int		check_someone_died(t_data *data);
 
+long	log_action(t_philo *philo, const char *action_msg);
+
 void	die(t_philo *philo);
+
+void	action_eat(t_philo *philo);
 
 void	simulation(t_philo **philos, t_data *data);
 
