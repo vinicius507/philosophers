@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:48:31 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/09 14:09:01 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/09 15:01:27 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,17 @@ sem_t	*new_semaphore(const char *name, int value)
 int	get_sem_value(sem_t *sem)
 {
 	return (*(int *)sem);
+}
+
+/**
+ * @brief Clears a semaphore.
+ * @param sem The sempahore to be cleared
+ * @param name The name of the semaphore
+ */
+void	clear_semaphore(sem_t *sem, const char *name)
+{
+	if (sem != NULL)
+		sem_close(sem);
+	if (name != NULL)
+		sem_unlink(name);
 }

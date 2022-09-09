@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:39:00 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/09 14:42:45 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/09 15:03:51 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int		error(const char *err_msg);
 void	argparse(int argc, char **argv, t_data *data);
 
 sem_t	*new_semaphore(const char *name, int value);
+
+void	clear_semaphore(sem_t *sem, const char *name);
 
 int		get_sem_value(sem_t *sem);
 

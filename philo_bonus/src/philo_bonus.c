@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 23:11:37 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/09 14:44:13 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/09 15:04:06 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,10 @@ static void	init_data(t_data *data)
  */
 static void	teardown_data(t_data *data)
 {
-	sem_close(data->forks);
-	sem_close(data->log_lock);
-	sem_close(data->someone_died);
-	sem_close(data->someone_died_lock);
-	sem_unlink(SEM_FORKS);
-	sem_unlink(SEM_LOG_LOCK);
-	sem_unlink(SEM_SOMEONE_DIED);
-	sem_unlink(SEM_SOMEONE_DIED_LOCK);
+	clear_semaphore(data->forks, SEM_FORKS);
+	clear_semaphore(data->log_lock, SEM_LOG_LOCK);
+	clear_semaphore(data->someone_died, SEM_SOMEONE_DIED);
+	clear_semaphore(data->someone_died_lock, SEM_SOMEONE_DIED_LOCK);
 }
 
 int	main(int argc, char **argv)
