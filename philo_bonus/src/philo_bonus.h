@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:39:00 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/09 15:03:51 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/10 16:15:45 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define SEM_SOMEONE_DIED "/sem_someone_died"
 # define SEM_SOMEONE_DIED_LOCK "/sem_someone_died_lock"
 
-typedef sem_t 	t_forks;
+typedef sem_t	t_forks;
 
 typedef struct s_data
 {

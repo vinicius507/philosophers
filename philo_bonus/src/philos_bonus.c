@@ -6,10 +6,9 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:01:41 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/08 17:05:34 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/10 16:12:50 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include <philo_bonus.h>
 #include <stdlib.h>

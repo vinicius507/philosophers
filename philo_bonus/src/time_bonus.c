@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 18:05:09 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/08 16:55:27 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/10 16:13:24 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 long	get_time_in_ms(void)
 {
 	struct timeval	tp;
-	long		ms;
+	long			ms;
 
 	if ((gettimeofday(&tp, NULL) != 0))
 		return (-1);

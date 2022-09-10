@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:25:09 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/09 15:03:36 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/10 16:13:02 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	philosophize(t_philo *philo, t_data *data)
 void	wait_all(int n, pid_t *pids)
 {
 	int	offset;
-	int wstatus;
+	int	wstatus;
 
 	offset = 0;
 	while (offset < n)

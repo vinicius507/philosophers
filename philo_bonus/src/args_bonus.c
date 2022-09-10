@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 15:35:32 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/08 15:39:49 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/10 16:12:31 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,3 @@ void	argparse(int argc, char **argv, t_data *data)
 		exit(EXIT_FAILURE);
 	}
 }
-
-
