@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 13:56:25 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/10 15:59:31 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/10 17:02:30 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,38 +15,21 @@
 #include <stdio.h>
 
 /**
- * @brief Checks if the philosopher is getting hungry.
- * @param philo
- * @return A non-zero value if he is getting hungry
+ * @brief Pickups a fork from the table.
+ * @philo philo The philosopher who's taking the fork
+ * @return A non-zero value if the acition was succesful
  */
-static int	is_getting_hungry(t_philo *philo)
+static int	pickup_fork(t_philo *philo)
 {
 	t_data	*data;
-	long	last_meal_time;
 
 	data = philo->data;
-	last_meal_time = data->start_time + philo->last_meal;
-	if ((get_time_since(last_meal_time) > (data->time_to_die / 2)))
+	sem_wait(data->forks);
+	if ((log_action(philo, "has taken a fork") == -1))
+	{
+		sem_post(data->forks);
 		return (1);
-	return (0);
-}
-
-/**
- * @brief Checks if the philosopher can eat.
- * @param philo
- * @return A non-zero value if he is able to eat
- */
-static int	can_eat(t_philo *philo)
-{
-	t_data	*data;
-	int		unused_forks;
-
-	data = philo->data;
-	unused_forks = get_sem_value(data->forks);
-	if (unused_forks == 1 && (is_getting_hungry(philo) != 0))
-		return (1);
-	if (unused_forks >= 2)
-		return (1);
+	}
 	return (0);
 }
 
@@ -57,25 +40,9 @@ static int	can_eat(t_philo *philo)
  */
 static int	pickup_forks(t_philo *philo)
 {
-	t_data	*data;
-
-	data = philo->data;
-	sem_wait(data->forks);
-	if ((log_action(philo, "has taken a fork") == -1))
+	if ((pickup_fork(philo) != 0))
 		return (1);
-	while ((get_sem_value(data->forks) < 1))
-	{
-		if ((check_someone_died(data) != 0))
-			return (1);
-		if ((starved(philo) != 0))
-		{
-			die(philo);
-			return (1);
-		}
-		usleep(100);
-	}
-	sem_wait(data->forks);
-	if ((log_action(philo, "has taken a fork") == -1))
+	if ((pickup_fork(philo) != 0))
 		return (1);
 	return (0);
 }
@@ -100,14 +67,6 @@ void	action_eat(t_philo *philo)
 	t_data	*data;
 
 	data = philo->data;
-	while ((can_eat(philo) == 0))
-	{
-		if ((check_someone_died(data) != 0))
-			return ;
-		if ((starved(philo) != 0))
-			return (die(philo));
-		usleep(100);
-	}
 	if ((pickup_forks(philo) != 0))
 		return ;
 	philo->last_meal = log_action(philo, "is eating");
@@ -116,7 +75,7 @@ void	action_eat(t_philo *philo)
 			< data->time_to_eat))
 	{
 		if ((check_someone_died(data) != 0))
-			return ;
+			return (drop_forks(data));
 		usleep(100);
 	}
 	drop_forks(data);
