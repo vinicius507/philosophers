@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 23:11:37 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/09 15:04:06 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/10 19:00:12 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ static void	init_data(t_data *data)
 	data->log_lock = new_semaphore(SEM_LOG_LOCK, 1);
 	if (data->log_lock == NULL)
 		exit(EXIT_FAILURE);
+	data->forks_lock = new_semaphore(SEM_FORKS_LOCK, 1);
+	if (data->forks_lock == NULL)
+		exit(EXIT_FAILURE);
 }
 
 /**
@@ -40,6 +43,7 @@ static void	init_data(t_data *data)
 static void	teardown_data(t_data *data)
 {
 	clear_semaphore(data->forks, SEM_FORKS);
+	clear_semaphore(data->forks_lock, SEM_FORKS_LOCK);
 	clear_semaphore(data->log_lock, SEM_LOG_LOCK);
 	clear_semaphore(data->someone_died, SEM_SOMEONE_DIED);
 	clear_semaphore(data->someone_died_lock, SEM_SOMEONE_DIED_LOCK);

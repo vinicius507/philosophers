@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:39:00 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/10 16:15:45 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/10 19:06:47 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define UNLIMITED_MEALS -1
 # define SEM_FORKS "/sem_forks"
 # define SEM_LOG_LOCK "/sem_log_lock"
+# define SEM_FORKS_LOCK "/sem_forks_lock"
 # define SEM_SOMEONE_DIED "/sem_someone_died"
 # define SEM_SOMEONE_DIED_LOCK "/sem_someone_died_lock"
 
@@ -34,6 +35,7 @@ typedef struct s_data
 	long	start_time;
 	t_forks	*forks;
 	sem_t	*log_lock;
+	sem_t	*forks_lock;
 	sem_t	*someone_died;
 	sem_t	*someone_died_lock;
 }	t_data;
@@ -81,6 +83,8 @@ int		check_someone_died(t_data *data);
 long	log_action(t_philo *philo, const char *action_msg);
 
 void	die(t_philo *philo);
+
+int		available_forks(t_data *data);
 
 void	action_eat(t_philo *philo);
 

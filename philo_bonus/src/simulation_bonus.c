@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:25:09 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/10 16:13:02 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/10 19:12:38 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static void	philosophize(t_philo *philo, t_data *data)
 		usleep(100);
 	}
 	clear_semaphore(data->forks, SEM_FORKS);
+	clear_semaphore(data->forks_lock, SEM_FORKS_LOCK);
 	clear_semaphore(data->log_lock, SEM_LOG_LOCK);
 	clear_semaphore(data->someone_died, SEM_SOMEONE_DIED);
 	clear_semaphore(data->someone_died_lock, SEM_SOMEONE_DIED_LOCK);

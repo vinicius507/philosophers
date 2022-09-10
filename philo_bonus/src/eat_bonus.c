@@ -6,13 +6,24 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 13:56:25 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/10 18:26:02 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/10 19:26:20 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo_bonus.h>
 #include <unistd.h>
 #include <stdio.h>
+
+/**
+ * @brief Drops a fork on the table.
+ * @param data The simulation data. See `t_data`
+ */
+static void	drop_fork(t_data *data)
+{
+	sem_wait(data->forks_lock);
+	sem_post(data->forks);
+	sem_post(data->forks_lock);
+}
 
 /**
  * @brief Pickups a fork from the table.
@@ -24,7 +35,7 @@ static int	pickup_fork(t_philo *philo)
 	t_data	*data;
 
 	data = philo->data;
-	while ((get_sem_value(data->forks) == 0))
+	while ((available_forks(data) == 0))
 	{
 		if ((check_someone_died(data) != 0))
 			return (1);
@@ -33,11 +44,14 @@ static int	pickup_fork(t_philo *philo)
 			die(philo);
 			return (1);
 		}
+		usleep(100);
 	}
+	sem_wait(data->forks_lock);
 	sem_wait(data->forks);
+	sem_post(data->forks_lock);
 	if ((log_action(philo, "has taken a fork") == -1))
 	{
-		sem_post(data->forks);
+		drop_fork(data);
 		return (1);
 	}
 	return (0);
@@ -63,8 +77,8 @@ static int	pickup_forks(t_philo *philo)
  */
 static void	drop_forks(t_data *data)
 {
-	sem_post(data->forks);
-	sem_post(data->forks);
+	drop_fork(data);
+	drop_fork(data);
 }
 
 /**
