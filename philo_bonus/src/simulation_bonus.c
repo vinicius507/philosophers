@@ -6,12 +6,11 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:25:09 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/10 19:12:38 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/10 19:55:12 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo_bonus.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>

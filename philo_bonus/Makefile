@@ -6,14 +6,14 @@
 ##   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        ##
 ##                                                +#+#+#+#+#+   +#+           ##
 ##   Created: 2022/09/05 16:57:33 by vgoncalv          #+#    #+#             ##
-##   Updated: 2022/09/10 19:07:03 by vgoncalv         ###   ########.fr       ##
+##   Updated: 2022/09/10 19:28:29 by vgoncalv         ###   ########.fr       ##
 ##                                                                            ##
 ## ########################################################################## ##
 
 NAME = philo_bonus
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror
 BUILD_DIR = ./build
 
 SRC_DIR = ./src

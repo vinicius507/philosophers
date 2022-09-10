@@ -6,12 +6,11 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 19:04:43 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/10 19:26:26 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/10 19:54:53 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo_bonus.h>
-#include <stdio.h>
 
 /**
  * @brief Gets the number of forks available.

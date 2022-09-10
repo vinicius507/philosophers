@@ -6,13 +6,12 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 13:56:25 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/10 19:26:20 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/10 19:55:05 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo_bonus.h>
 #include <unistd.h>
-#include <stdio.h>
 
 /**
  * @brief Drops a fork on the table.
