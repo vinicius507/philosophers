@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:41:39 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/10 17:40:37 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/10 18:41:30 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ void	die(t_philo *philo)
 	t_data	*data;
 
 	data = philo->data;
-	sem_wait(data->someone_died_lock);
 	sem_wait(data->log_lock);
+	sem_wait(data->someone_died_lock);
 	if ((get_sem_value(data->someone_died) == 0))
 		printf("%05ld %d died\n", get_time_since(data->start_time), philo->id);
-	sem_post(data->log_lock);
 	sem_post(data->someone_died);
 	sem_post(data->someone_died_lock);
+	sem_post(data->log_lock);
 }
