@@ -1,0 +1,21 @@
+name: build_bonus
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: recursive
+    - name: GNU make version
+      run: make --version
+    - name: Build Bonus
+      run: make -C ./philo_bonus
