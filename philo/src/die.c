@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:41:39 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/07 19:59:22 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/10 15:54:25 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ void	die(t_philo *philo)
 	t_data	*data;
 
 	data = philo->data;
+	pthread_mutex_lock(&data->log_mutex);
 	pthread_mutex_lock(&data->someone_died_mutex);
 	printf("%05ld %d died\n", get_time_since(data->start_time), philo->id);
 	data->someone_died = 1;
 	pthread_mutex_unlock(&data->someone_died_mutex);
+	pthread_mutex_unlock(&data->log_mutex);
 }
