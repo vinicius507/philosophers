@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 13:56:25 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/10 17:39:46 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/10 18:26:02 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,17 @@ static int	pickup_fork(t_philo *philo)
 	t_data	*data;
 
 	data = philo->data;
-	sem_wait(data->forks);
-	if ((starved(philo) != 0))
+	while ((get_sem_value(data->forks) == 0))
 	{
-		die(philo);
-		return (1);
+		if ((check_someone_died(data) != 0))
+			return (1);
+		if ((starved(philo) != 0))
+		{
+			die(philo);
+			return (1);
+		}
 	}
+	sem_wait(data->forks);
 	if ((log_action(philo, "has taken a fork") == -1))
 	{
 		sem_post(data->forks);
