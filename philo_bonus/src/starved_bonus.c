@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:39:32 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/08 16:59:36 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/10 15:49:08 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	starved(t_philo *philo)
 
 	data = philo->data;
 	interval = get_time_since(data->start_time + philo->last_meal);
-	if ((interval >= data->time_to_die))
+	if (interval >= data->time_to_die)
 		return (1);
 	return (0);
 }

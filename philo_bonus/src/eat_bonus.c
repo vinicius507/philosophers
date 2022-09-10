@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 13:56:25 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/09 14:32:55 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/10 15:59:31 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,36 @@
 #include <stdio.h>
 
 /**
+ * @brief Checks if the philosopher is getting hungry.
+ * @param philo
+ * @return A non-zero value if he is getting hungry
+ */
+static int	is_getting_hungry(t_philo *philo)
+{
+	t_data	*data;
+	long	last_meal_time;
+
+	data = philo->data;
+	last_meal_time = data->start_time + philo->last_meal;
+	if ((get_time_since(last_meal_time) > (data->time_to_die / 2)))
+		return (1);
+	return (0);
+}
+
+/**
  * @brief Checks if the philosopher can eat.
- * @param data The simulation data
+ * @param philo
  * @return A non-zero value if he is able to eat
  */
-static int	can_eat(t_data *data)
+static int	can_eat(t_philo *philo)
 {
-	int	unused_forks;
+	t_data	*data;
+	int		unused_forks;
 
+	data = philo->data;
 	unused_forks = get_sem_value(data->forks);
+	if (unused_forks == 1 && (is_getting_hungry(philo) != 0))
+		return (1);
 	if (unused_forks >= 2)
 		return (1);
 	return (0);
@@ -40,7 +61,8 @@ static int	pickup_forks(t_philo *philo)
 
 	data = philo->data;
 	sem_wait(data->forks);
-	log_action(philo, "has taken a fork");
+	if ((log_action(philo, "has taken a fork") == -1))
+		return (1);
 	while ((get_sem_value(data->forks) < 1))
 	{
 		if ((check_someone_died(data) != 0))
@@ -53,6 +75,8 @@ static int	pickup_forks(t_philo *philo)
 		usleep(100);
 	}
 	sem_wait(data->forks);
+	if ((log_action(philo, "has taken a fork") == -1))
+		return (1);
 	return (0);
 }
 
@@ -76,7 +100,7 @@ void	action_eat(t_philo *philo)
 	t_data	*data;
 
 	data = philo->data;
-	while ((can_eat(data) == 0))
+	while ((can_eat(philo) == 0))
 	{
 		if ((check_someone_died(data) != 0))
 			return ;

@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 14:38:28 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/09 14:42:23 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/10 15:59:48 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	is_thinking(t_philo *philo, long start)
 
 	data = philo->data;
 	time = (data->time_to_die - data->time_to_eat - data->time_to_sleep) / 2;
-	if (get_time_since(start) < time)
+	if ((get_time_since(start) < time))
 		return (1);
 	return (0);
 }
