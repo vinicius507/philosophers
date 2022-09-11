@@ -23,19 +23,29 @@ As soon as they wake up they start thinking, until they get hungry again.
 
 ## Compilation
 
-Clone the repository:
+First, clone the repository:
 
 ```sh
 $ git clone https://github.com/vinicius507/philosophers.git
 ```
 
-Then build the project using GNU Make:
+There are two formats of the project in the repository: the mandatory one and
+the bonus. The mandatory part uses POSIX threads and mutexes, while the bonus
+part uses process forks and POSIX semaphores.
+
+The build the desired binary:
 
 ```sh
-$ make
+$ make # For the mandatory part
+$ make bonus # For the bonus part
 ```
 
+The mandatory binary is located inside the `philo` folder, while the bonus one
+is inside the `philo_bonus` folder.
+
 ## Usage
+
+Both mandatory and bonus binaries accept the same positional arguments:
 
 ```sh
 $ ./philo --help
