@@ -3,7 +3,7 @@
 MAKEDIR="./philo"
 BIN="./philo/philo"
 NUM_TESTS=3
-MAX_MEALS=4
+MAX_MEALS=20
 LOG_FOLDER="./test_logs"
 FAILURES=0
 
