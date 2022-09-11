@@ -75,6 +75,10 @@ run_make() {
 	COMMAND=$1
 
 	make $COMMAND -C $MAKEDIR 2>&1 >/dev/null
+	if [[ $? -ne 0 ]]; then
+		echo "Error running make"
+		exit 1
+	fi
 }
 
 setup_tests() {
