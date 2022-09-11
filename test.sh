@@ -111,16 +111,16 @@ usage() {
 Usage: ./test.sh [OPTIONS]...
 
 OPTIONS
--m	--make-dir
-	The directory containing the Makefile.
--b	--bin-path
-	The path to the binary executable of the simulation.
--n	--num-tests
-	The number of tests to be executed for each case.
--M	--max-meals
-	The maximum number of meals in cases where there should be no deaths.
--h	--help
-	Displays this help message and exits.
+	-m	--make-dir
+	  The directory containing the Makefile.
+	-b	--bin-path
+	  The path to the binary executable of the simulation.
+	-n	--num-tests
+	  The number of tests to be executed for each case.
+	-M	--max-meals
+	  The maximum number of meals in cases where there should be no deaths.
+	-h	--help
+	  Displays this help message and exits.
 EOF
 }
 
