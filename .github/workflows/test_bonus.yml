@@ -1,0 +1,21 @@
+name: test_bonus
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: recursive
+    - name: Bash Version
+      run: bash --version
+    - name: Test Bonus
+      run: bash test.sh --make-dir "./philo_bonus" --bin-path "./philo_bonus/philo_bonus"
