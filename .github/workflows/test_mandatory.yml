@@ -17,5 +17,7 @@ jobs:
         submodules: recursive
     - name: Bash Version
       run: bash --version
+    - name: Make version
+      run: make --version
     - name: Test Mandatory
-      run: bash test.sh
+      run: make test

@@ -17,5 +17,7 @@ jobs:
         submodules: recursive
     - name: Bash Version
       run: bash --version
+    - name: Make version
+      run: make --version
     - name: Test Bonus
-      run: bash test.sh --make-dir "./philo_bonus" --bin-path "./philo_bonus/philo_bonus"
+      run: make test_bonus
