@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:25:09 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/10 19:55:12 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/12 14:50:10 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 static void	philosophize(t_philo *philo, t_data *data)
 {
 	philo->data = data;
-	if (philo->id % 2 == 0)
+	if ((philo->id + 1) % 2 == 0)
 		usleep(500);
 	while ((check_someone_died(data) == 0))
 	{
