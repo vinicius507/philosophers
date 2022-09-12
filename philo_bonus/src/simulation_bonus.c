@@ -6,7 +6,7 @@
 /*   By: vgoncalv <vgoncalv>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:25:09 by vgoncalv          #+#    #+#             */
-/*   Updated: 2022/09/11 16:40:28 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2022/09/12 14:44:35 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	philosophize(t_philo *philo, t_data *data)
 			break ;
 		action_sleep(philo);
 		action_think(philo);
+		usleep(100);
 	}
 	clear_semaphore(data->forks, SEM_FORKS);
 	clear_semaphore(data->forks_lock, SEM_FORKS_LOCK);
@@ -79,13 +80,13 @@ void	simulation(t_philo **philos, t_data *data)
 	while (i < data->n)
 	{
 		pids[i] = fork();
-		if (pids[i] == -1)
-			error("could not fork the parent process");
 		if (pids[i] == 0)
 		{
 			free(pids);
 			philosophize(philos[i], data);
 		}
+		else if (pids[i] == -1)
+			error("could not fork the parent process");
 		i++;
 	}
 	wait_all(data->n, pids);
