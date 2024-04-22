@@ -19,6 +19,18 @@
           };
         });
   in {
+    checks = forEachSystem ({pkgs}: {
+      norminette-check = pkgs.stdenvNoCC.mkDerivation {
+        name = "norminette-check";
+        src = ./philo;
+        dontBuild = true;
+        doCheck = true;
+        checkPhase = with pkgs; ''
+          ${norminette}/bin/norminette $src
+        '';
+        installPhase = "touch $out"; # Derivation must build an output.
+      };
+    });
     packages = forEachSystem ({pkgs}: {
       default = pkgs.philosophers;
       philosophers = import ./nix/pkgs/philosophers.nix {
