@@ -1,3 +1,14 @@
+<p align="center">
+    <img src="https://game.42sp.org.br/static/assets/achievements/philosopherse.png">
+</p>
+
+<p align="center">
+    <img src="https://img.shields.io/badge/OS-Linux-blue" alt="OS">
+    <img src="https://img.shields.io/badge/Language-C%2B%2B98-orange.svg" alt="Language">
+    <img src="https://img.shields.io/badge/Grade-100%2F100-brightgreen.svg" alt="Grade">
+    <img src="https://img.shields.io/badge/Status-Completed-brightgreen.svg" alt="Status">
+</p>
+
 # Philosophers
 
 This is project is about the usage of threads and mutexes.
