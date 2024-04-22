@@ -16,14 +16,14 @@ check_result() {
 	GREPED_OUT="$(grep --color=always 'died' $OUTPUT_FILE)"
 	if [[ $SHOULD_DIE == true ]]; then
 		if [[ -z $GREPED_OUT ]]; then
-			 STATUS="KO"
-			 FAILURES="$(expr $FAILURES + 1)"
-		 fi
+			STATUS="KO"
+			FAILURES="$(expr $FAILURES + 1)"
+		fi
 	else
-		 if [[ -n $GREPED_OUT ]]; then
-			 STATUS="KO"
-			 FAILURES="$(expr $FAILURES + 1)"
-		 fi
+		if [[ -n $GREPED_OUT ]]; then
+			STATUS="KO"
+			FAILURES="$(expr $FAILURES + 1)"
+		fi
 	fi
 	[[ -n $GREPED_OUT ]] && echo "    $GREPED_OUT"
 	echo "  STATUS: $STATUS"
@@ -82,7 +82,8 @@ run_make() {
 }
 
 setup_tests() {
-	mkdir -p $LOG_FOLDER; clear
+	mkdir -p $LOG_FOLDER
+	clear
 	echo "> Compiling"
 	run_make re
 	echo "> Done"
@@ -107,7 +108,7 @@ test_suite() {
 }
 
 usage() {
-	cat << EOF
+	cat <<EOF
 Usage: ./test.sh [OPTIONS]...
 
 OPTIONS
@@ -127,35 +128,35 @@ EOF
 argparse() {
 	while [[ $# -gt 0 ]]; do
 		case $1 in
-			"-m" | "--make-dir")
-				MAKEDIR=$2
-				shift
-				shift
-				;;
-			"-b" | "--bin-path")
-				BIN=$2
-				shift
-				shift
-				;;
-			"-n" | "--num-tests")
-				NUM_TESTS=$2
-				shift
-				shift
-				;;
-			"-M" | "--max-meals")
-				MAX_MEALS=$2
-				shift
-				shift
-				;;
-			"-h" | "--help")
-				usage
-				exit 0
-				;;
-			*)
-				echo "Error: unknown argument $1"
-				usage
-				exit 1
-				;;
+		"-m" | "--make-dir")
+			MAKEDIR=$2
+			shift
+			shift
+			;;
+		"-b" | "--bin-path")
+			BIN=$2
+			shift
+			shift
+			;;
+		"-n" | "--num-tests")
+			NUM_TESTS=$2
+			shift
+			shift
+			;;
+		"-M" | "--max-meals")
+			MAX_MEALS=$2
+			shift
+			shift
+			;;
+		"-h" | "--help")
+			usage
+			exit 0
+			;;
+		*)
+			echo "Error: unknown argument $1"
+			usage
+			exit 1
+			;;
 
 		esac
 	done
