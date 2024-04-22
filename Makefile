@@ -12,15 +12,11 @@
 
 NAME=philo/philo
 MANDATORY=philo
-BONUS=philo_bonus
 
 all: $(NAME)
 
 $(NAME):
 	make -C $(MANDATORY)
-
-bonus:
-	make -C $(BONUS)
 
 clean:
 	make clean -C $(MANDATORY)
@@ -34,8 +30,5 @@ re: fclean all
 
 test:
 	bash test.sh
-
-test_bonus:
-	bash test.sh --make-dir $(BONUS) --bin-path $(BONUS)/philo_bonus
 
 .PHONY: all bonus clean fclean re test
