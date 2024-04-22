@@ -38,8 +38,11 @@ void	die(t_philo *philo)
 	data = philo->data;
 	pthread_mutex_lock(&data->log_mutex);
 	pthread_mutex_lock(&data->someone_died_mutex);
-	printf("%05ld %d died\n", get_time_since(data->start_time), philo->id);
-	data->someone_died = 1;
+	if (data->someone_died == 0)
+	{
+		printf("%05ld %d died\n", get_time_since(data->start_time), philo->id);
+		data->someone_died = 1;
+	}
 	pthread_mutex_unlock(&data->someone_died_mutex);
 	pthread_mutex_unlock(&data->log_mutex);
 }
