@@ -12,8 +12,8 @@
 
 NAME = philo
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
 BUILD_DIR = ./build
 
 SRC_DIR = ./src
