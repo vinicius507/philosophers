@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "philo.h"
 #include <sys/time.h>
 #include <bits/types/struct_timeval.h>
 

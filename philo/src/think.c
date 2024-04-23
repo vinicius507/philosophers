@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "philo.h"
 #include <unistd.h>
 
 static int	is_thinking(t_philo *philo, long int start)

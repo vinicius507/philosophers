@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "philo.h"
 #include <unistd.h>
 
 static int	can_eat(t_philo *philo)
