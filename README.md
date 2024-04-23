@@ -13,6 +13,8 @@
 
 This is project is about the usage of threads and mutexes.
 
+![Showcase of the project](/assets/showcase.gif)
+
 ## Description
 
 There are `n` philosophers in a round table, each philosopher can take one of
